@@ -13,9 +13,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     
+    
     var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
+    
+    var calculator = Calculator()
     
     // Error check computed variables
     var expressionIsCorrect: Bool {
@@ -37,7 +40,7 @@ class ViewController: UIViewController {
     // View Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+       // textView.text = "0"
     }
     
     
@@ -107,30 +110,17 @@ class ViewController: UIViewController {
             return self.present(alertVC, animated: true, completion: nil)
         }
         
-        // Create local copy of operations
-        var operationsToReduce = elements
+        //initialize elements in the model
+        calculator.elements = self.elements
         
-        // Iterate over operations while an operand still here
-        while operationsToReduce.count > 1 {
-            let left = Double(operationsToReduce[0])!
-            let operand = operationsToReduce[1]
-            let right = Double(operationsToReduce[2])!
-            
-            let result: Double
-            switch operand {
-            case "+": result = left + right
-            case "-": result = left - right
-            case "x": result = left * right
-            case "÷": result = left / right
-            default: return
-            }
-            
-            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result)", at: 0)
-        }
+        let result = calculator.calculate()
         
-        textView.text.append(" = \(operationsToReduce.first!)")
+        textView.text.append(" = \(result)")
     }
-
+    
+    @IBAction func reset(_ sender: UIButton) {
+        calculator.reset()
+        textView.text = "0"
+    }
 }
 
