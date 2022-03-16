@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     
     @IBAction func tappedMutliplicationButton(_ sender: UIButton){
         if canAddOperator {
-            textView.text.append(" * ")
+            textView.text.append(" x ")
         } else {
             let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
 
     @IBAction func tappedDivideButton(_ sender: UIButton){
         if canAddOperator {
-            textView.text.append(" / ")
+            textView.text.append(" ÷ ")
         } else {
             let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
             alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -122,7 +122,7 @@ class ViewController: UIViewController {
             case "-": result = left - right
             case "x": result = left * right
             case "÷": result = left / right
-            default: fatalError("Unknown operator !")
+            default: return
             }
             
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
