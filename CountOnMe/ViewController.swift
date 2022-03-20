@@ -10,6 +10,10 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let calculator = Calculator()
+    
+    //MARK: IBOutlet
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     
@@ -17,8 +21,6 @@ class ViewController: UIViewController {
     var elements: [String] {
         return textView.text.split(separator: " ").map { "\($0)" }
     }
-    
-    var calculator = Calculator()
     
     // Error check computed variables
     var expressionIsCorrect: Bool {
