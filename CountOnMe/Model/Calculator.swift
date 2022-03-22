@@ -9,41 +9,157 @@
 import Foundation
 
 class Calculator {
-    enum Operator: String {
-        case addition = "+"
-        case subtraction = "-"
-        case division = "÷"
-        case multiplication = "x"
+
+    var messageAlert: ((String) -> Void)?
+
+    var calculTextView: ((String) -> Void)?
+
+    init() {
+        self.calculString = ""
     }
-    var elements: [String] = []
-    
-    // Create local copy of operations
-    func calculate() -> String {
-        var operationsToReduce = elements
-        
-        
-        // Iterate over operations while an operand still here
-        while operationsToReduce.count > 1 {
-            let left = Double(operationsToReduce[0])!
-            let operand = Operator(rawValue: operationsToReduce[1])
-            let right = Double(operationsToReduce[2])!
-            
-            let result: Double
-            switch operand {
-            case .addition: result = left + right
-            case .subtraction: result = left - right
-            case .multiplication: result = left * right
-            case .division: result = left / right
-            default: return ""
-            }
-            
-            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result)", at: 0)
+
+    // for the textView
+    var calculString: String {
+        didSet {
+            calculTextView?(calculString)
         }
-        return operationsToReduce.first!
     }
-    
+
+    // for the numbers in textView
+    private var elements: [String] {
+        return calculString.split(separator: " ").map { "\($0)" }
+    }
+
+    // Error check computed variables
+    var expressionIsCorrect: Bool {
+        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "÷"
+    }
+
+    var expressionHaveEnoughElement: Bool {
+        return elements.count >= 3
+    }
+
+    var canAddOperator: Bool {
+        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "÷"
+    }
+
+    var expressionHaveResult: Bool {
+        return calculString.firstIndex(of: "=") != nil
+    }
+
+    // For the safety of the universe
+    var divideZero: Bool {
+        return calculString.contains("÷ 0")
+    }
+
+    // check for starting with a number
+    var startWithNumber: Bool {
+        if calculString >= "0" && calculString <= "9" {
+            return elements.count >= 1
+        } else {
+            messageAlert?("⚠️You can't start with an operator!⚠️")
+        }
+        return false
+    }
+
+    // check for adding numbers
+    func addNumbers(numbers: String) {
+        if expressionHaveResult {
+            calculString = ""
+        }
+        calculString.append(numbers)
+    }
+
+    // check for a operator
+    func addOperator(with operators: String) {
+        if startWithNumber {
+            if canAddOperator {
+                 calculString.append(" \(operators) ")
+             } else {
+                 messageAlert?("⚠️ An operator is already in ⚠️")
+             }
+        }
+    }
+
+    // reset for the AC Button
     func reset() {
-        elements = []
+        calculString.removeAll()
+        calculTextView?("0")
     }
+
+    // func result when all conditions are ok
+    func result() {
+        guard expressionIsCorrect else {
+            messageAlert?("🚨 Enter a correct expression! 🚨")
+            return
+        }
+
+        guard expressionHaveEnoughElement else {
+            messageAlert?("🚨 Start a new calculation! 🚨")
+            return
+        }
+
+        guard !divideZero else {
+            messageAlert?("⚠️ Impossible to divide by 0 ⚠️")
+            calculString.removeAll()
+            calculTextView?("0")
+            return
+        }
+
+        // for calculate
+        var operationsToReduce = elements
+
+        while operationsToReduce.count > 1 {
+
+            guard var left = Double(operationsToReduce[0]) else { return }
+            var operand = operationsToReduce[1]
+            guard var right = Double(operationsToReduce[2]) else { return }
+
+            let result: Double
+
+            // Start at one or we can't assign index to (index - 1)
+                var operandIndex = 1
+
+            // Rechercher s'il y a plusieurs signes de division puis attribuer un index
+                if let index = operationsToReduce.firstIndex(where: { $0 == "x" || $0 == "÷" }) {
+
+                    operandIndex = index
+                    if let leftunwrapp = Double(operationsToReduce[index - 1]) { left = leftunwrapp }
+                    operand = operationsToReduce[index]
+                    if let rightUnwrapp = Double(operationsToReduce[index + 1]) { right = rightUnwrapp }
+                }
+
+            result = calculate(left: Double(left), right: Double(right), operand: operand)
+
+            // Remove the extra operator
+                for _ in 1...3 {
+                    operationsToReduce.remove(at: operandIndex - 1)
+                }
+            operationsToReduce.insert(formatResult(result: Double(result)), at: operandIndex - 1 )
+
+        }
+            guard let finalResult = operationsToReduce.first else { return }
+            calculString.append(" = \(finalResult)")
+    }
+
+    func calculate(left: Double, right: Double, operand: String) -> Double {
+
+        let result: Double
+           switch operand {
+           case "+": result = left + right
+           case "-": result = left - right
+           case "÷": result = left / right
+           case "x": result = left * right
+           default: return 0.0
+           }
+           return result
+       }
+
+    // reformat to have only 3 numbers after the point
+     private func formatResult(result: Double) -> String {
+          let formatter = NumberFormatter()
+          formatter.maximumFractionDigits = 3
+          guard let resultFormated = formatter.string(from: NSNumber(value: result)) else { return String() }
+          return resultFormated
+      }
 }
