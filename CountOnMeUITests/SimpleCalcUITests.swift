@@ -66,5 +66,11 @@ class SimpleCalcUITests: XCTestCase {
         app.buttons["÷"].tap()
         app.alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
+    
+    func testStartWithEqual() {
+        app.buttons["="].tap()
+        XCUIApplication().alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
+        
+    }
 }
 
