@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
-        }
+            }
         calculator.addNumbers(numbers: numberText)
     }
 
