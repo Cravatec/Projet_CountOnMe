@@ -54,10 +54,10 @@ class Calculator {
 
     // check for starting with a number
     var startWithNumber: Bool {
-        if calculString >= "0" && calculString <= "9" {
+        if calculString >= "0" && calculString <= "9999999999" {
             return elements.count >= 1
         } else {
-            messageAlert?("⚠️You can't start with an operator!⚠️")
+            messageAlert?("You can't start with an operator!")
         }
         return false
     }
@@ -76,7 +76,7 @@ class Calculator {
             if canAddOperator {
                  calculString.append(" \(operators) ")
              } else {
-                 messageAlert?("⚠️ An operator is already in ⚠️")
+                 messageAlert?("An operator is already in")
              }
         }
     }
@@ -90,17 +90,17 @@ class Calculator {
     // func result when all conditions are ok
     func result() {
         guard expressionIsCorrect else {
-            messageAlert?("🚨 Enter a correct expression! 🚨")
+            messageAlert?("Enter a correct expression!")
             return
         }
 
         guard expressionHaveEnoughElement else {
-            messageAlert?("🚨 Start a new calculation! 🚨")
+            messageAlert?("Start a new calculation!")
             return
         }
 
         guard !divideZero else {
-            messageAlert?("⚠️ Impossible to divide by 0 ! You can make the planet collapse. Be careful with that ⚠️")
+            messageAlert?("Impossible to divide by 0 ! You can make the planet collapse. Be careful with that")
             calculString.removeAll()
             calculTextView?("0")
             return
