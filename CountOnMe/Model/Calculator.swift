@@ -100,7 +100,7 @@ class Calculator {
         }
 
         guard !divideZero else {
-            messageAlert?("⚠️ Impossible to divide by 0 ⚠️")
+            messageAlert?("⚠️ Impossible to divide by 0 ! You can make the planet collapse. Be careful with that ⚠️")
             calculString.removeAll()
             calculTextView?("0")
             return
@@ -120,7 +120,7 @@ class Calculator {
             // Start at one or we can't assign index to (index - 1)
                 var operandIndex = 1
 
-            // Rechercher s'il y a plusieurs signes de division puis attribuer un index
+            // Check for reduce the divide sign then add to index
                 if let index = operationsToReduce.firstIndex(where: { $0 == "x" || $0 == "÷" }) {
 
                     operandIndex = index

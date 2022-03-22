@@ -10,26 +10,61 @@ import XCTest
 
 class SimpleCalcUITests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let app = XCUIApplication()
 
+    override func setUp() {
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
         // UI tests must launch the app that they test. Doing this in setup will make sure it happens for each test
         XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state required for your tests before they run.
-        // The setUp method is a good place to do this.
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testButton12AndAddition() {
+        app.buttons["1"].tap()
+        app.buttons["+"].tap()
+        app.buttons["2"].tap()
+        app.buttons["="].tap()
     }
-
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testButton34AndSubstraction() {
+        app.buttons["3"].tap()
+        app.buttons["-"].tap()
+        app.buttons["4"].tap()
+        app.buttons["="].tap()
     }
-
+    
+    func testButton56AndMultiplication() {
+        app.buttons["5"].tap()
+        app.buttons["x"].tap()
+        app.buttons["6"].tap()
+        app.buttons["="].tap()
+    }
+    
+    func testButton78AndDivide() {
+        app.buttons["7"].tap()
+        app.buttons["÷"].tap()
+        app.buttons["8"].tap()
+        app.buttons["="].tap()
+    }
+    
+    func testButton90andAC() {
+        app.buttons["0"].tap()
+        app.buttons["9"].tap()
+        app.buttons["AC"].tap()
+    }
+    
+    func testCloseMessageAlert() {
+        app.buttons["2"].tap()
+        app.buttons["÷"].tap()
+        app.buttons["0"].tap()
+        app.buttons["="].tap()
+        app.alerts["Warning"].scrollViews.otherElements.buttons["OK"].tap()
+    }
+    
+    func testOperatorAtFirst() {
+        app.buttons["÷"].tap()
+        app.alerts["Warning"].scrollViews.otherElements.buttons["OK"].tap()
+    }
 }
+
