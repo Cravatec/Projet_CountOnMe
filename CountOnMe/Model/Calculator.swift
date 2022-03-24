@@ -54,7 +54,7 @@ class Calculator {
 
     // check for starting with a number
     var startWithNumber: Bool {
-        if calculString >= "0" && calculString <= "9999999999" {
+        if calculString >= "0" && calculString <= "9" {
             return elements.count >= 1
         } else {
             messageAlert?("You can't start with an operator!")
@@ -81,31 +81,39 @@ class Calculator {
         }
     }
 
-    // reset for the AC Button
-    func reset() {
-        calculString.removeAll()
-        calculTextView?("0")
-    }
-
-    // func result when all conditions are ok
-    func result() {
+    private func canProceed() -> Bool {
         guard expressionIsCorrect else {
             messageAlert?("Enter a correct expression!")
-            return
+            return false
         }
 
         guard expressionHaveEnoughElement else {
             messageAlert?("Start a new calculation!")
-            return
+            return false
         }
 
         guard !divideZero else {
             messageAlert?("Impossible to divide by 0 ! You can make the planet collapse. Be careful with that")
             calculString.removeAll()
             calculTextView?("0")
+            return false
+        }
+        return true
+    }
+    
+    // reset for the AC Button
+    func reset() {
+        calculString.removeAll()
+        calculTextView?("0")
+    }
+    
+    // func result when all conditions are ok
+    func result() {
+        
+        guard canProceed() else {
             return
         }
-
+                
         // for calculate
         var operationsToReduce = elements
 
