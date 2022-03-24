@@ -48,15 +48,16 @@ class CalculatorTests: XCTestCase {
         calculator.addOperator(with: "÷")
         calculator.addNumbers(numbers: "3")
         calculator.result()
-
         XCTAssertEqual(calculator.calculString, "100 ÷ 3 = 33.333")
     }
+    
     func testGivenMultiOperator_WhenTryAdditionAndSubstraction_ThenAlertMessage() {
             calculator.reset()
             calculator.addOperator(with: "+")
             calculator.addOperator(with: "-")
             XCTAssertEqual(calculator.calculString, "")
         }
+    
     func testGivenNumberToDivide_WhenDivideByZero_ThenNil() {
         calculator.addNumbers(numbers: "1")
         calculator.addOperator(with: "÷")

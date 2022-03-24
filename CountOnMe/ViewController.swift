@@ -16,27 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
 
-    var elements: [String] {
-        return textView.text.split(separator: " ").map { "\($0)" }
-    }
-
-    // Error check computed variables
-    var expressionIsCorrect: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "÷"
-    }
-
-    var expressionHaveEnoughElement: Bool {
-        return elements.count >= 3
-    }
-
-    var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "÷"
-    }
-
-    var expressionHaveResult: Bool {
-        return textView.text.firstIndex(of: "=") != nil
-    }
-
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
@@ -64,16 +43,20 @@ class ViewController: UIViewController {
         link()
     }
 
-    func alertMessage(message: String) {
+    private func alertMessage(message: String) {
         let alertVC = UIAlertController(title: "⚠️ Warning ⚠️", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
-
-    func link() {
+    
+    // Bind
+    private func link() {
+        textView.text = "0"
         calculator.messageAlert = alertMessage
         calculator.calculTextView = { calculText in
-        self.textView.text = calculText
+            DispatchQueue.main.async {
+                self.textView.text = calculText
+            }
         }
     }
 }
