@@ -93,8 +93,7 @@ class Calculator {
 
         guard !divideZero else {
             messageAlert?("Impossible to divide by 0! You can make the planet collapse. Be careful with that!")
-            calculString.removeAll()
-            calculTextView?("0")
+            reset()
             return false
         }
         return true
