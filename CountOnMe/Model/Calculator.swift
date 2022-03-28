@@ -12,7 +12,7 @@ class Calculator {
 
     var messageAlert: ((String) -> Void)?
     var calculTextView: ((String) -> Void)?
-    
+
     init() {
         self.calculString = ""
     }
@@ -98,20 +98,20 @@ class Calculator {
         }
         return true
     }
-    
+
     // reset for the AC Button
     func reset() {
         calculString.removeAll()
         calculTextView?("0")
     }
-    
+
     // func result when all conditions are ok
     func result() {
-        
+
         guard canProceed() else {
             return
         }
-                
+
         // for calculate
         var operationsToReduce = elements
 
@@ -128,7 +128,6 @@ class Calculator {
 
             // Check for reduce the divide sign then add to index
                 if let index = operationsToReduce.firstIndex(where: { $0 == "x" || $0 == "÷" }) {
-
                     operandIndex = index
                     if let leftunwrapp = Double(operationsToReduce[index - 1]) { left = leftunwrapp }
                     operand = operationsToReduce[index]

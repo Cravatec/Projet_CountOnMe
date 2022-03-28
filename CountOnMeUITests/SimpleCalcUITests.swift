@@ -26,34 +26,34 @@ class SimpleCalcUITests: XCTestCase {
         app.buttons["2"].tap()
         app.buttons["="].tap()
     }
-    
+
     func testButton34AndSubstraction() {
         app.buttons["3"].tap()
         app.buttons["-"].tap()
         app.buttons["4"].tap()
         app.buttons["="].tap()
     }
-    
+
     func testButton56AndMultiplication() {
         app.buttons["5"].tap()
         app.buttons["x"].tap()
         app.buttons["6"].tap()
         app.buttons["="].tap()
     }
-    
+
     func testButton78AndDivide() {
         app.buttons["7"].tap()
         app.buttons["÷"].tap()
         app.buttons["8"].tap()
         app.buttons["="].tap()
     }
-    
+
     func testButton90andAC() {
         app.buttons["0"].tap()
         app.buttons["9"].tap()
         app.buttons["AC"].tap()
     }
-    
+
     func testCloseMessageAlert() {
         app.buttons["2"].tap()
         app.buttons["÷"].tap()
@@ -61,16 +61,14 @@ class SimpleCalcUITests: XCTestCase {
         app.buttons["="].tap()
         app.alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
-    
+
     func testOperatorAtFirst() {
         app.buttons["÷"].tap()
         app.alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
-    
+
     func testStartWithEqual() {
         app.buttons["="].tap()
         XCUIApplication().alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
-        
     }
 }
-
