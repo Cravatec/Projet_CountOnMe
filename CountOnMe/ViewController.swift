@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         calculator.addNumbers(numbers: numberText)
     }
 
-    @IBAction func tappetheOperator(_ sender: UIButton) {
+    @IBAction func taptheOperator(_ sender: UIButton) {
         guard let operators = sender.titleLabel?.text else { return }
         calculator.addOperator(with: operators)
     }

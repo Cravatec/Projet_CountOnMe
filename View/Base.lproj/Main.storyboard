@@ -90,7 +90,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="tappetheOperator:" destination="eqK-jh-KKu" eventType="touchUpInside" id="zmn-KY-5g3"/>
+                                                    <action selector="taptheOperator:" destination="eqK-jh-KKu" eventType="touchUpInside" id="1vE-ld-1m7"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -151,7 +151,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="tappetheOperator:" destination="eqK-jh-KKu" eventType="touchUpInside" id="QQN-w6-KlE"/>
+                                                    <action selector="taptheOperator:" destination="eqK-jh-KKu" eventType="touchUpInside" id="3YH-NC-Nre"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -212,7 +212,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="tappetheOperator:" destination="eqK-jh-KKu" eventType="touchUpInside" id="w2W-8G-tbJ"/>
+                                                    <action selector="taptheOperator:" destination="eqK-jh-KKu" eventType="touchUpInside" id="vDo-yD-gXU"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -272,7 +272,7 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="tappetheOperator:" destination="eqK-jh-KKu" eventType="touchUpInside" id="5Me-Ue-F4M"/>
+                                                    <action selector="taptheOperator:" destination="eqK-jh-KKu" eventType="touchUpInside" id="TJA-Md-dwp"/>
                                                 </connections>
                                             </button>
                                         </subviews>
