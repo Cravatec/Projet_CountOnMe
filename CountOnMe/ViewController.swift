@@ -51,7 +51,7 @@ class ViewController: UIViewController {
 
     // Bind
     private func link() {
-        textView.text = "0"
+        calculator.reset()
         calculator.messageAlert = alertMessage
         calculator.calculTextView = { calculText in
             DispatchQueue.main.async {
