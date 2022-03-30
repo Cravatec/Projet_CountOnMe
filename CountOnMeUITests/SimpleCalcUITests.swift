@@ -62,6 +62,14 @@ class SimpleCalcUITests: XCTestCase {
         app.alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
 
+    func testMutiplicationWithZero() {
+        app.buttons["0"].tap()
+        app.buttons["x"].tap()
+        app.buttons["0"].tap()
+        app.buttons["="].tap()
+//        app.alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
+    }
+
     func testOperatorAtFirst() {
         app.buttons["÷"].tap()
         app.alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()

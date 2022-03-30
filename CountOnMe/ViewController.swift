@@ -16,7 +16,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
 
-    // View actions
+    // MARK: - View Life cycles
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        link()
+    }
+
+    // MARK: - View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
@@ -37,19 +43,13 @@ class ViewController: UIViewController {
         calculator.reset()
     }
 
-    // View Life cycles
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        link()
-    }
-
     private func alertMessage(message: String) {
         let alertVC = UIAlertController(title: "⚠️ Warning ⚠️", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
 
-    // Bind
+    // MARK: - Bind
     private func link() {
         calculator.reset()
         calculator.messageAlert = alertMessage
