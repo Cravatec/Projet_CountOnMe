@@ -3,13 +3,12 @@
 //  CountOnMe
 //
 //  Created by Sam on 16/03/2022.
-//  Copyright © 2022 Vincent Saluzzo. All rights reserved.
 //
 
 import Foundation
 
 class Calculator {
-
+    // MARK: - Properties
     var messageAlert: ((String) -> Void)?
     var calculTextView: ((String) -> Void)?
 
@@ -29,7 +28,8 @@ class Calculator {
         return calculString.split(separator: " ").map { "\($0)" }
     }
 
-    // Error check computed variables
+    // MARK: - Computed variables
+    // Checks all possible errors in the expression
     var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "÷"
     }
@@ -61,6 +61,7 @@ class Calculator {
         return false
     }
 
+    // MARK: - Methods
     // check for adding numbers
     func addNumbers(numbers: String) {
         if expressionHaveResult {
@@ -126,7 +127,7 @@ class Calculator {
             // Start at one or we can't assign index to (index - 1)
                 var operandIndex = 1
 
-            // Check for reduce the divide sign then add to index
+            // For priority operations x & ÷ in the expression
                 if let index = operationsToReduce.firstIndex(where: { $0 == "x" || $0 == "÷" }) {
                     operandIndex = index
                     if let leftunwrapp = Double(operationsToReduce[index - 1]) { left = leftunwrapp }

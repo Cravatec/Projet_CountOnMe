@@ -2,9 +2,7 @@
 //  SimpleCalcTests.swift
 //  SimpleCalcTests
 //
-//  Created by Vincent Saluzzo on 29/03/2019.
-//  Modified by Sam on 01/03/2022
-//  Copyright © 2019 Vincent Saluzzo. All rights reserved.
+//  Created by Sam on 01/03/2022
 //
 
 import XCTest
