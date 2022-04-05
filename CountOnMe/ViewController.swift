@@ -9,8 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Properties
     let calculator = Calculator()
 
+    // MARK: - Outlets
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
 

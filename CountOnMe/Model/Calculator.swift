@@ -62,7 +62,7 @@ class Calculator {
     }
 
     // MARK: - Methods
-    // check for adding numbers
+    /// check for adding numbers
     func addNumbers(numbers: String) {
         if expressionHaveResult {
             calculString = ""
@@ -70,7 +70,9 @@ class Calculator {
         calculString.append(numbers)
     }
 
-    // check for a operator
+    /// check for a operator
+    /// - Parameters:
+    ///     - operators: it should be +, -, x, ÷
     func addOperator(with operators: String) {
         if startWithNumber {
             if canAddOperator {
