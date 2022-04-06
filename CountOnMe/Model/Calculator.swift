@@ -72,7 +72,7 @@ class Calculator {
 
     /// check for a operator
     /// - Parameters:
-    ///     - operators: it should be +, -, x, ÷
+    ///     - operators: should be +, -, x, ÷
     func addOperator(with operators: String) {
         if startWithNumber {
             if canAddOperator {
