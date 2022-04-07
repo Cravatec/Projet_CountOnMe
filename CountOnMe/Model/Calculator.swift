@@ -53,7 +53,7 @@ class Calculator {
 
     // check for starting with a number
     var startWithNumber: Bool {
-        if calculString >= "0" && calculString <= "9" {
+        if calculString >= "0" {
             return elements.count >= 1
         } else {
             messageAlert?("You can't start with an operator!")
@@ -115,9 +115,9 @@ class Calculator {
             return
         }
 
-        // for calculate
+        // Create local copy of operations
         var operationsToReduce = elements
-
+        // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
 
             guard var left = Double(operationsToReduce[0]) else { return }
@@ -139,7 +139,7 @@ class Calculator {
 
             result = calculate(left: Double(left), right: Double(right), operand: operand)
 
-            // Remove the extra operator
+            // for a extra operator 
                 for _ in 1...3 {
                     operationsToReduce.remove(at: operandIndex - 1)
                 }

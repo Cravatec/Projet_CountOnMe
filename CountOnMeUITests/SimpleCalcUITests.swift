@@ -69,4 +69,11 @@ class SimpleCalcUITests: XCTestCase {
         app.buttons["="].tap()
         XCUIApplication().alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
+
+    func testTwoOperators() {
+        app.buttons["2"].tap()
+        app.buttons["+"].tap()
+        app.buttons["-"].tap()
+        XCUIApplication().alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
+    }
 }

@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     }
 
     private func alertMessage(message: String) {
-        let alertVC = UIAlertController(title: "⚠️ Warning ⚠️", message: message, preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "⚠️🚨 Warning 🚨⚠️", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
