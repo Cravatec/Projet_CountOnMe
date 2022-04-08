@@ -57,23 +57,23 @@ class SimpleCalcUITests: XCTestCase {
         app.buttons["÷"].tap()
         app.buttons["0"].tap()
         app.buttons["="].tap()
-        app.alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
+        app.alerts["⚠️🚨 Warning 🚨⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
 
     func testOperatorAtFirst() {
         app.buttons["÷"].tap()
-        app.alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
+        app.alerts["⚠️🚨 Warning 🚨⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
 
     func testStartWithEqual() {
         app.buttons["="].tap()
-        XCUIApplication().alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
+        app.alerts["⚠️🚨 Warning 🚨⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
 
     func testTwoOperators() {
         app.buttons["2"].tap()
         app.buttons["+"].tap()
         app.buttons["-"].tap()
-        XCUIApplication().alerts["⚠️ Warning ⚠️"].scrollViews.otherElements.buttons["OK"].tap()
+        app.alerts["⚠️🚨 Warning 🚨⚠️"].scrollViews.otherElements.buttons["OK"].tap()
     }
 }
